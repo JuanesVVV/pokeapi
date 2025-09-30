@@ -1,22 +1,34 @@
-async function Detalle(parametro){
-    
-    var root = document.getElementById("root");
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${parametro}`);
-        const data = await res.json();
+async function Detalle(parametro) {
+  const root = document.getElementById("root");
+  root.innerHTML = "<p>Cargando...</p>";
 
-        console.log(data);
-        document.getElementById("root").innerHTML =  `
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${parametro}`);
+    const data = await res.json();
 
-        <section class="c-detalle">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png" alt="${data.name}" height="120" width="auto">
-        <p>${data.name}</p>
-        <p>${data.id}</p>
-        <p>${tipoPoke}</p>
-        <p>Altura: ${data.height / 10} m / Peso: ${data.weight / 10} kg</p>
-        <p>hp: ${data.stats[0].base_stat}</p>
-        <p>Velocidad: ${data.stats[5].base_stat}</p>
-        <p>Ataque: ${data.stats[1].base_stat} Defensa: ${data.stats[2].base_stat}</p>
-        <p>Ataque Especial: ${data.stats[3].base_stat} Defensa Especial: ${data.stats[4].base_stat}</p>
+    const tipoPoke = data.types.map(t => t.type.name).join(", ");
 
-    </section>`
+    root.innerHTML = `
+      <section class="c-detalle">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png"
+             alt="${data.name}" height="120" width="auto">
+        <h2>${data.name} (#${data.id})</h2>
+        <p><strong>Tipo:</strong> ${tipoPoke}</p>
+        <p><strong>Altura:</strong> ${data.height / 10} m</p>
+        <p><strong>Peso:</strong> ${data.weight / 10} kg</p>
+        <ul>
+          <li>HP: ${data.stats[0].base_stat}</li>
+          <li>Velocidad: ${data.stats[5].base_stat}</li>
+          <li>Ataque: ${data.stats[1].base_stat}</li>
+          <li>Defensa: ${data.stats[2].base_stat}</li>
+          <li>Ataque Especial: ${data.stats[3].base_stat}</li>
+          <li>Defensa Especial: ${data.stats[4].base_stat}</li>
+        </ul>
+        <button onclick="Home()">Volver</button>
+      </section>
+    `;
+  } catch (error) {
+    root.innerHTML = `<p>Error al cargar el detalle del Pokémon.</p>`;
+    console.error("Error en Detalle:", error);
+  }
 }
