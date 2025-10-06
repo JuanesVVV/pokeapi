@@ -24,6 +24,8 @@ function buscadorfuncion(asa) {
     document.getElementById("la-lista").innerHTML = listaHTML;
   }
 }
+
+
 function Home() {
   const root = document.getElementById("root");
   root.innerHTML = ""; // Limpiar contenido anterior
