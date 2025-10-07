@@ -1,7 +1,6 @@
 let pokemones = [];
-let totalPokes = 6;
+let totalPokes = 151;
 
-// Conexión para obtener la lista de Pokémon
 async function Conexion(UnFiltro) {
   try {
     if (UnFiltro === "All") {
@@ -19,20 +18,9 @@ async function Conexion(UnFiltro) {
   }
 }
 
-// Cargar todos los Pokémon al iniciar
 async function General() {
-  if (pokemones.length === 0) {
-    pokemones = await Conexion("All");
-  }
-  Home(pokemones);
-  console.log(pokemones[2].name);
+  pokemones = await Conexion("All");
+  Home();
 }
 
-General();
-
-async function FiltroConexion(filtroelegido) {
-  const pokesFiltrados = await Conexion(filtroelegido);
-  document.getElementById("la-lista").innerHTML = "";
-  const listaFiltro = GenerarLista(pokesFiltrados);
-  document.getElementById("la-lista").innerHTML = listaFiltro;
-}
+General(); // Mostrar Pokémon desde el inicio

@@ -1,6 +1,5 @@
 function GenerarLista(arraypokemones) {
   let listaPokes = "";
-
   for (let i = 0; i < arraypokemones.length; i++) {
     let id = arraypokemones[i].url.split("/")[6];
     listaPokes += `
@@ -11,61 +10,44 @@ function GenerarLista(arraypokemones) {
         <p>${arraypokemones[i].name}</p>
       </div>`;
   }
-
   return listaPokes;
 }
-function buscadorfuncion(asa) {
-  if (asa.length >= 3) {
-    const filtrados = pokemones.filter(p => p.name.toLowerCase().includes(asa.toLowerCase()));
-    const listaHTML = GenerarLista(filtrados);
-    document.getElementById("la-lista").innerHTML = listaHTML;
-  } else {
-    const listaHTML = GenerarLista(pokemones);
-    document.getElementById("la-lista").innerHTML = listaHTML;
-  }
-}
 
+function buscadorfuncion(asa) {
+  const filtrados = asa.length >= 3
+    ? pokemones.filter(p => p.name.toLowerCase().includes(asa.toLowerCase()))
+    : pokemones;
+  document.getElementById("la-lista").innerHTML = GenerarLista(filtrados);
+}
 
 function Home() {
   const root = document.getElementById("root");
-  root.innerHTML = ""; // Limpiar contenido anterior
+  root.innerHTML = "";
 
-  // Buscador
   const buscador = document.createElement("input");
-  buscador.classList.add("c-buscador");
   buscador.type = "text";
-  buscador.placeholder = "Buscar pokemon";
-  buscador.addEventListener("input", () => {
-    buscadorfuncion(buscador.value);
-  });
+  buscador.placeholder = "Buscar Pokémon";
+  buscador.addEventListener("input", () => buscadorfuncion(buscador.value));
 
-  // Filtros
   const contenedorFiltro = document.createElement("div");
-  contenedorFiltro.classList.add("c-filtros");
-
-  const tipos = [
-    "normal", "fighting", "flying", "poison", "ground", "rock", "bug",
-    "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice",
-    "dragon", "dark", "fairy", "stellar", "unknown"
-  ];
-
+  const tipos = ["normal", "fire", "water", "grass", "electric", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
   tipos.forEach(tipo => {
     const btn = document.createElement("button");
     btn.textContent = tipo;
-    btn.addEventListener("click", () => {
-      FiltroConexion(tipo);
-    });
+    btn.onclick = () => FiltroConexion(tipo);
     contenedorFiltro.appendChild(btn);
   });
 
-  // Lista
   const contenedorLista = document.createElement("section");
-  contenedorLista.classList.add("c-lista");
   contenedorLista.id = "la-lista";
   contenedorLista.innerHTML = GenerarLista(pokemones);
 
-  // Agregar al DOM
   root.appendChild(buscador);
   root.appendChild(contenedorFiltro);
   root.appendChild(contenedorLista);
+}
+
+async function FiltroConexion(filtroelegido) {
+  pokemones = await Conexion(filtroelegido);
+  document.getElementById("la-lista").innerHTML = GenerarLista(pokemones);
 }
