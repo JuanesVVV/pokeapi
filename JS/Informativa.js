@@ -1,14 +1,19 @@
 function Informativa() {
   document.getElementById("root").innerHTML = `
-    <section>
+    <section class="c-detalle">
       <h2>¿Qué es esta app?</h2>
-      <p>Explora Pokémon con la PokeAPI. Puedes ver detalles, guardar favoritos y capturar aleatoriamente.</p>
+      <img src="ruta-de-tu-imagen.jpeg" 
+           alt="Celebración 25 años Pokémon" 
+           style="width: 100%; max-width: 600px; border-radius: 12px; margin-bottom: 20px;">
+      <p>Esta aplicación te permite explorar el mundo de Pokémon usando la <strong>PokéAPI</strong>. Puedes buscar, capturar y guardar tus favoritos.</p>
       <ul style="list-style: none; padding-left: 0;">
-        <li>Home: Lista y buscador</li>
-        <li>Favoritos: Tus Pokémon favoritos</li>
-        <li>Capturados: Pokémon que atrapaste</li>
-        <li>Detalle: Estadísticas completas</li>
+        <li><strong>Home:</strong> Lista completa de Pokémon con buscador por nombre.</li>
+        <li><strong>Favoritos:</strong> Guarda tus Pokémon preferidos para verlos rápidamente.</li>
+        <li><strong>Capturados:</strong> Simula capturas aleatorias y guarda tu colección.</li>
+        <li><strong>Detalle:</strong> Muestra estadísticas, tipo, peso, altura y habilidades.</li>
       </ul>
+      <p>La app usa imágenes oficiales y datos en tiempo real desde <a href="https://pokeapi.co" target="_blank">pokeapi.co</a>.</p>
+      <p>Inspirada en la experiencia de los juegos clásicos, con protagonistas de todas las generaciones y consolas emblemáticas como Game Boy, DS y Switch.</p>
       <button onclick="Home()">Volver</button>
     </section>
   `;
