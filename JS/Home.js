@@ -51,3 +51,7 @@ async function FiltroConexion(filtroelegido) {
   pokemones = await Conexion(filtroelegido);
   document.getElementById("la-lista").innerHTML = GenerarLista(pokemones);
 }
+window.onload = () => {
+  Informativa(); // Mostrar primero la sección informativa
+  General();     // Cargar datos de Pokémon en segundo plano
+};

@@ -1,4 +1,3 @@
-/* Fondo general */
 body {
   margin: 0;
   font-family: 'Verdana', sans-serif;
@@ -6,14 +5,13 @@ body {
   color: #2d3436;
 }
 
-/* Barra de navegación */
 nav {
   background-color: #d63031;
   padding: 12px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 nav button {
@@ -30,7 +28,6 @@ nav button:hover {
   background-color: #fab1a0;
 }
 
-/* Secciones de contenido */
 section {
   padding: 20px;
   margin: 20px auto;
@@ -40,7 +37,13 @@ section {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Tarjetas de Pokémon */
+.imagen-informativa {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
 .c-lista-pokemon, .c-unpoke {
   background-color: #fdcb6e;
   border: 2px solid #2d3436;
@@ -53,7 +56,6 @@ section {
   width: 120px;
 }
 
-/* Detalle de Pokémon */
 .c-detalle {
   background-color: #ffeaa7;
   border: 2px solid #d63031;
@@ -68,7 +70,16 @@ section {
   margin-bottom: 15px;
 }
 
-/* Botones generales */
+input[type="text"] {
+  padding: 10px;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid #2d3436;
+  border-radius: 8px;
+}
+
 button {
   background-color: #74b9ff;
   border: none;
@@ -85,20 +96,49 @@ button:hover {
   color: white;
 }
 
-/* Buscador */
-input[type="text"] {
-  padding: 10px;
-  width: 80%;
-  max-width: 400px;
-  margin: 20px auto;
-  display: block;
-  border: 2px solid #2d3436;
-  border-radius: 8px;
+.boton-retro {
+  background-color: #c7dcbf;
+  border: 3px solid #3e3e3e;
+  color: #3e3e3e;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  padding: 10px 24px;
+  margin-top: 20px;
+  border-radius: 6px;
+  box-shadow: inset -2px -2px 0 #8e8e8e, inset 2px 2px 0 #ffffff;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
 }
 
-/* Contador */
+.boton-retro:hover {
+  background-color: #b2c9a7;
+  transform: scale(1.05);
+}
+
 #contador {
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .c-lista-pokemon, .c-unpoke {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav button {
+    width: 90%;
+    margin-bottom: 8px;
+  }
+
+  section {
+    margin: 10px;
+    padding: 15px;
+  }
 }

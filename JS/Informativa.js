@@ -2,11 +2,11 @@ function Informativa() {
   document.getElementById("root").innerHTML = `
     <section class="c-detalle">
       <h2>¿Qué es esta app?</h2>
-      <img src="ruta-de-tu-imagen.jpeg" 
+      <img src="Imagenes/pokemon.jpeg" 
            alt="Celebración 25 años Pokémon" 
-           style="width: 100%; max-width: 600px; border-radius: 12px; margin-bottom: 20px;">
+           class="imagen-informativa">
       <p>Esta aplicación te permite explorar el mundo de Pokémon usando la <strong>PokéAPI</strong>. Puedes buscar, capturar y guardar tus favoritos.</p>
-      <ul style="list-style: none; padding-left: 0;">
+      <ul>
         <li><strong>Home:</strong> Lista completa de Pokémon con buscador por nombre.</li>
         <li><strong>Favoritos:</strong> Guarda tus Pokémon preferidos para verlos rápidamente.</li>
         <li><strong>Capturados:</strong> Simula capturas aleatorias y guarda tu colección.</li>
